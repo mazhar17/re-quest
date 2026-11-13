@@ -1,0 +1,22 @@
+.re3d-view{position:relative;width:100%;aspect-ratio:16/9;border:1px solid var(--line);background:#dfe9f1;overflow:hidden}
+.re3d-view.hero{aspect-ratio:16/10}
+.re3d-canvas{display:block;width:100%;height:100%;cursor:grab;outline-offset:-3px}
+.re3d-canvas:active{cursor:grabbing}
+.re3d-labels{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.re3d-dot{position:absolute;left:0;top:0;width:24px;height:24px;padding:0;border-radius:50%;border:2px solid #fff;background:var(--blue);color:#fff;font-size:11px;font-weight:700;line-height:1;pointer-events:auto;box-shadow:0 1px 4px rgba(0,0,0,.35)}
+.re3d-dot:hover{color:#fff;border-color:#fff;background:#173f7a}
+.re3d-dot.active{background:var(--orange);width:28px;height:28px}
+.re3d-status{position:absolute;left:8px;right:8px;bottom:8px;padding:5px 9px;font-size:11px;line-height:1.4;color:var(--ink);background:rgba(255,255,255,.9);border:1px solid var(--line);pointer-events:none}
+.re3d-status:empty{display:none}
+.re3d-tools{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 0}
+.re3d-tools button{font-size:11px;padding:6px 10px}
+.re3d-tools button[aria-pressed="true"]{border-color:var(--blue);color:var(--blue);box-shadow:inset 0 -3px var(--blue)}
+.re3d-thumb{display:block;width:100%;padding:0;border:0;background:#fff;box-shadow:none;margin:4px 0 0}
+.re3d-thumb img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border:1px solid var(--line)}
+.re3d-thumb small{display:block;font-size:10px;font-weight:400;color:var(--blue);text-align:center;margin-top:6px}
+.re3d-thumb:hover img{border-color:var(--blue)}
+.lecture-preview.compact{padding:0}
+.lecture-preview.compact svg{display:none}
+.lecture-preview.compact small{margin-top:0}
+@media(max-width:720px){.re3d-view,.re3d-view.hero{aspect-ratio:4/3}}
+@media print{.re3d-tools,.re3d-dot,.re3d-status{display:none!important}}
