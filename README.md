@@ -41,6 +41,12 @@ Two new views are added to the navigation:
 
 The enrichment is a separate `<script>`/`<style>` block appended at the end of the HTML; the original game code and lecture figures are untouched.
 
+## Credit and licence
+
+ME4011 Renewable Energy by Professor Dr. Mazharul Islam, Department of Mechanical and Production Engineering, Ahsanullah University of Science and Technology (AUST), Dhaka, Bangladesh.
+
+Except where otherwise noted, this work is licensed under the [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/). Third-party lecture figures keep the attributions and licences recorded in `LECTURE-FIGURE-SOURCES.md`; the embedded three.js library is under the MIT License.
+
 ## Publishing with GitHub Pages
 
 If the repository already publishes its root through GitHub Pages, upload this folder beneath that root; the game will be available at `/re-quest/`. For a new Pages repository, place `index.html` in its published root (root or `/docs` for branch-based publishing). Alternatively, configure a Pages workflow to upload `re-quest` as its site artifact. GitHub Pages branch-based publishing does not offer an arbitrary `/re-quest` source directory.
