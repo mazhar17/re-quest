@@ -72,7 +72,7 @@ export function thermal(ctx,vals=[700,10]){const {root,M}=ctx,F=flows();ground(r
   for(let r=0;r<rows;r++){const x=8+r*10.5;for(let m=0;m<mods;m++){const z=-34+m*Lm;const g=new THREE.Group();g.position.set(x,3.2,z+Lm/2);g.rotation.z=-ang;tr.add(g);const s=add(g,pg,mir,0,-f*.25,0);s.rotation.x=-PI/2;
       const rc=cyl(g,.075,.075,Lm,glow,0,f*.75,0,12);rc.rotation.x=PI/2;rc.castShadow=false;[-1,1].forEach(q=>{const a=box(g,.05,f*1.15,.05,M.galv,q*.3,f*.25,Lm/2-.4);a.rotation.z=q*.22;const c=a.clone();c.position.z=-Lm/2+.4;g.add(c)});const tt=cyl(g,.16,.16,Lm,M.galv,0,-f*.3,0,10);tt.rotation.x=PI/2}
     for(let m=0;m<=mods;m++){const z=-34+m*Lm;const py=add(root,new THREE.CylinderGeometry(.12,.3,3.2,4),M.galv,x,1.6,z);py.scale.z=.5}}
-  const hot=F.add(flowMat(0xb5551a,0xff7a1a,26)),coldm=F.add(flowMat(0x245caa,0x5aa0ff,26));
+  const hot=F.add(flowMat(0xb5551a,0xff7a1a,26)),coldm=F.add(flowMat(0x245caa,0x5aa0ff,26),-1);
   pipe(root,[[8,.6,14.6],[41,.6,14.6],[41,.6,24],[35,.6,24]],.22,hot);pipe(root,[[8,.5,-35],[45,.5,-35],[45,.5,30],[35,.5,30]],.22,coldm);
   for(let r=0;r<rows;r++){const x=8+r*10.5;pipe(root,[[x,.6,14.6],[x,3.2+f*.75*Math.cos(ang),14]],.1,M.hot);pipe(root,[[x,.5,-35],[x,3.2+f*.75*Math.cos(ang),-34.2]],.1,M.cold)}
   /* power block */
@@ -205,7 +205,7 @@ export function geo(ctx,vals=[10,393.15]){const {root,M}=ctx,F=flows(),zf=9,D=30
   dioramaBlock(root,{w:46,d:20,depth:D,zf,side:'strata',top:'grass',rep:1});
   const rm=new THREE.MeshStandardMaterial({color:0x5a2a1a,emissive:0xff5a1a,emissiveIntensity:1,roughness:.8,transparent:true,opacity:.92}),rs=new THREE.Shape();for(let i=0;i<=40;i++){const a=i/40*2*PI,rr=1+.12*Math.sin(a*5)+.07*Math.sin(a*9+1);const x=Math.cos(a)*17*rr,y=-24.5+Math.sin(a)*3.6*rr;i?rs.lineTo(x,y):rs.moveTo(x,y)}add(root,new THREE.ShapeGeometry(rs),rm,1,0,zf+.03,false);
   const cr=rng(12);for(let i=0;i<22;i++){const x=-13+cr()*28,y=-27+cr()*5,m=box(root,1.2+cr()*2.4,.05,.02,std(0x2a1410,1),x,y,zf+.05);m.rotation.z=(cr()-.5)*1.6;m.castShadow=false}
-  const up=F.add(flowMat(0xb5551a,0xffa04a,16),-1.1),dn=F.add(flowMat(0x245caa,0x7ab8ff,16),1.1);
+  const up=F.add(flowMat(0xb5551a,0xffa04a,16),1.1),dn=F.add(flowMat(0x245caa,0x7ab8ff,16),1.1);
   pipe(root,[[-9,-25,zf+.3],[-9,1.4,zf+.3]],.36,up);pipe(root,[[11,1.4,zf+.3],[11,-25,zf+.3]],.36,dn);[-9,11].forEach(x=>{box(root,1.3,D-6,.05,std(0x4a4f55,.9),x,-(D-6)/2,zf+.04).castShadow=false;const g=new THREE.Group();g.position.set(x,0,zf-.4);root.add(g);cyl(g,.5,.5,.5,M.red,0,1.7,.7,16);cyl(g,.12,.12,1.6,M.red,0,2.4,.7,10).rotation.z=PI/2;sph(g,.3,M.red,0,2.4,.7);box(g,2,.2,2,M.concrete,0,.1,.7)});
   /* surface plant */
   pad(root,32,17,1,zf-9.5);vessel(root,M.steel,1.05,7.5,2,2.2,zf-8.5);[-.5,4.5].forEach(x=>box(root,.4,1.4,1.7,M.galv,x,.7,zf-8.5));
@@ -244,13 +244,13 @@ export function storage(ctx,vals=[360,80]){const {root,M}=ctx,F=flows();ground(r
   fence(root,M,-16,13.5,22,13.5);fence(root,M,-16,-13.5,-16,13.5);
   let E=360,eta=80,soc=.2,dir=1;const set=([e,r])=>{E=e;eta=r;const n=clamp(Math.ceil(e/360)-1,0,5);cons.forEach((c,i)=>c.visible=i<n)};set(vals);
   return {size:30,cam:V(-15,9,26),target:V(2.5,1.2,1.5),sunDir:V(.35,.82,.55),set,
-    update(dt){soc+=dir*dt*(dir>0?.09:.09/(eta/100));if(soc>=.98){soc=.98;dir=-1}if(soc<=.08){soc=.08;dir=1}led.forEach(([m,l])=>{m.emissiveIntensity=l<soc?2.4:0});const c=dir>0?0x58b6ff:0xffa04a;cab.emissive.setHex(c);cab2.emissive.setHex(c);F.step(dt,dir*1.4)},
-    status:()=>`${dir>0?'Charging':'Discharging'} · state of charge ${(soc*100).toFixed(0)}% · ${Math.max(1,Math.ceil(E/360))} container(s) for ${E} MJ · round trip ${eta}%`,
+    update(dt){soc+=dir*dt*(dir>0?.09:.09/(eta/100));if(soc>=.98){soc=.98;dir=-1}if(soc<=.08){soc=.08;dir=1}led.forEach(([m,l])=>{m.emissiveIntensity=l<soc?2.4:0});const c=dir>0?0x58b6ff:0xffa04a;cab.emissive.setHex(c);cab2.emissive.setHex(c);F.step(dt,-dir*1.4)},
+    status:()=>`${dir>0?'Charging':'Discharging'} · state of charge ${(soc*100).toFixed(0)}% · ${Math.max(1,Math.ceil(E/360))} container(s) shown for ${E} MJ (visual scale) · round trip ${eta}%`,
     labels:[{pos:V(-6,1.7,7.3),name:'Battery racks',text:'Lithium-ion modules in series-parallel racks store energy electrochemically; LEDs show state of charge.'},
       {pos:V(-3.1,3.4,5.2),name:'Thermal management',text:'HVAC holds cells in a narrow temperature band; its consumption lowers round-trip efficiency.'},
       {pos:V(12,3,6.2),name:'Power conversion system',text:'Bidirectional inverter sets the power rating [kW]; rack count sets the energy rating [MJ].'},
       {pos:V(17.2,2.6,6.2),name:'Transformer',text:'Couples the storage system to the medium-voltage network.'},
-      {pos:V(3.8,.9,7.6),name:'DC cabling',text:'Blue flow shows charging, orange shows discharging; losses occur in both directions.'},
+      {pos:V(3.8,.9,7.6),name:'DC cabling',text:'Blue stripes move toward the racks while charging; orange stripes move toward the grid while discharging. Losses occur in both directions.'},
       {pos:V(-2,1.8,-24),name:'PV array',text:'Midday surplus generation is shifted to the evening peak by storage.'}]}}
 
 /* ================= CAMPUS MICROGRID (hero, energy foundations, campus design) ================= */

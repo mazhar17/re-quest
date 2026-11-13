@@ -20,3 +20,7 @@
 .lecture-preview.compact small{margin-top:0}
 @media(max-width:720px){.re3d-view,.re3d-view.hero{aspect-ratio:4/3}}
 @media print{.re3d-tools,.re3d-dot,.re3d-status{display:none!important}}
+.credit{margin-top:14px;padding-top:14px;border-top:1px solid var(--line);font-size:12px;line-height:1.5}
+.credit p{margin:0 0 4px}
+.credit strong{color:var(--ink)}
+@media print{footer{display:block!important}}
