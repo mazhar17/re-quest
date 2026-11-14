@@ -1,0 +1,13 @@
+.case-tabs button{flex:1 1 150px}
+.case-calc{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);gap:26px;margin-top:10px;align-items:start}
+.case-results th{font-weight:400;width:62%}
+.case-results td{text-align:right}
+.case-results strong{color:var(--blue);font-size:14px}
+.case-legend{display:flex;flex-wrap:wrap;gap:16px;font-size:11px;margin:8px 0}
+.case-legend span::before{content:'';display:inline-block;vertical-align:middle;width:16px;height:3px;background:var(--c);margin-right:6px}
+.case-check{margin:10px 0 14px}
+.case-check-row{display:flex;gap:8px;align-items:stretch}
+.case-check-row input{flex:1;min-width:0}
+.case-check-row button{font-size:12px}
+@media(max-width:900px){.case-calc{grid-template-columns:1fr}}
+@media print{.case-tabs,#caseInputs .actions,.case-check{display:none!important}.case-calc{grid-template-columns:1fr 2fr}}

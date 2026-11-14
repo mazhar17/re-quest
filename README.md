@@ -14,6 +14,18 @@ There are no living figures, character graphics, religious references, decorativ
 
 `index.html` and `renewable-energy-quest.html` are identical standalone files. Uploading `index.html` alone is sufficient to run the complete game.
 
+## Bangladesh industry case studies
+
+View **08 · Case studies** adds five project briefs that connect the course to professional practice in Bangladesh:
+
+1. Rooftop solar design for a garment factory (roof and sanctioned-load limits, string sizing, yield).
+2. Net-metering bill analysis for a weekly-holiday load (self-consumption, export, bill).
+3. Grid integration of utility-scale solar (net load, evening ramp, curtailment; Teesta 200 MW data).
+4. Battery storage for evening-peak supply (sizing, levelised cost of storage; Rampal exercise).
+5. Techno-economic appraisal (LCOE, payback, NPV, IRR; CAPEX versus OPEX model).
+
+Each brief has sourced industry context, a stated design basis, a live calculator with a chart, the method at the current settings, professional-practice points, deliverables suitable for an assignment, and two self-checks (no XP). Case studies use industry units (kWh, kWp, MW, taka). Tariffs, incentives and guidelines are as reported in 2021-2026 and must be confirmed before professional use. Sources are in `src-cases/`.
+
 ## 3D plant models edition
 
 Every section opens with a real-time 3D model generated in the browser (WebGL): campus microgrid, ground-mounted PV plant, flat-plate collectors with a parabolic-trough plant, wind turbine, reservoir hydropower scheme, tidal barrage, fixed-dome biogas digester (cutaway), binary geothermal plant (cutaway), and a battery storage system.
